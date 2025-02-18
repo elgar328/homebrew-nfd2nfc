@@ -41,7 +41,9 @@ class Nfd2nfc < Formula
   end
 
   # When uninstalling, unload the watcher service.
-  uninstall launchctl: "com.github.elgar328.nfd2nfc-watcher"
+  uninstall do
+    system "launchctl", "unload", "-w", plist_path if plist_path.exist?
+  end
 
   test do
     assert_match "nfd2nfc", shell_output("#{bin}/nfd2nfc --version")
