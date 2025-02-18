@@ -13,8 +13,6 @@ class Nfd2nfc < Formula
     system "cargo", "install", *std_cargo_args
   end
 
-  plist_options manual: "nfd2nfc watch start"
-
   # Register nfd2nfc-watcher as a user agent.
   def plist
     <<~EOS
