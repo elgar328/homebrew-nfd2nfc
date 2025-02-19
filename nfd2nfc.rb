@@ -9,10 +9,8 @@ class Nfd2nfc < Formula
   depends_on "rust" => :build
 
   def install
-    # Install the nfd2nfc binary from the "nfd2nfc" subdirectory.
-    system "cargo", "install", *std_cargo_args, "--path", "nfd2nfc"
-    # Install the nfd2nfc-watcher binary from the "nfd2nfc-watcher" subdirectory.
-    system "cargo", "install", *std_cargo_args, "--path", "nfd2nfc-watcher"
+system "cargo", "install", "--locked", "--root=#{prefix}", "--jobs=#{ENV.make_jobs}", "--manifest-path", "nfd2nfc/Cargo.toml"
+system "cargo", "install", "--locked", "--root=#{prefix}", "--jobs=#{ENV.make_jobs}", "--manifest-path", "nfd2nfc-watcher/Cargo.toml"
   end
 
   # Register nfd2nfc-watcher as a user agent.
