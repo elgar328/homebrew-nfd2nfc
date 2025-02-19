@@ -9,10 +9,10 @@ class Nfd2nfc < Formula
   depends_on "rust" => :build
 
   def install
-    system "cargo", "install", "--locked", "--root=#{prefix}", "--jobs=#{ENV.make_jobs}", "--", "--manifest-path", "nfd2nfc/Cargo.toml"
-    system "cargo", "install", "--locked", "--root=#{prefix}", "--jobs=#{ENV.make_jobs}", "--", "--manifest-path", "nfd2nfc-watcher/Cargo.toml"
+    system "cargo", "install", "--locked", "--root=#{prefix}", "--jobs=#{ENV.make_jobs}", "--manifest-path", "nfd2nfc/Cargo.toml"
+    system "cargo", "install", "--locked", "--root=#{prefix}", "--jobs=#{ENV.make_jobs}", "--manifest-path", "nfd2nfc-watcher/Cargo.toml"
   end
-  
+
   # Register nfd2nfc-watcher as a user agent.
   def plist
     <<~EOS
