@@ -21,7 +21,7 @@ class Nfd2nfc < Formula
       keep_alive crashed: true
       run_type :immediate
       working_dir HOMEBREW_PREFIX
-      name "testtesttest"
+      name ["testtesttest"]
     end
 
     def post_install
