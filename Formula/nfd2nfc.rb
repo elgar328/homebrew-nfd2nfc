@@ -7,7 +7,8 @@ class Nfd2nfc < Formula
   head "https://github.com/elgar328/nfd2nfc.git", branch: "main"
 
   depends_on "rust" => :build
-
+  plist_options manual: "com.github.elgar328.nfd2nfc"
+  
   on_macos do
     def install
       system "cargo", "build", "--release"
