@@ -9,12 +9,9 @@ class Nfd2nfc < Formula
   depends_on "rust" => :build
 
   def install
-    cd "nfd2nfc" do
-      system "cargo", "install", "--locked", "--root=#{prefix}", "--jobs=#{ENV.make_jobs}"
-    end
-    cd "nfd2nfc-watcher" do
-      system "cargo", "install", "--locked", "--root=#{prefix}", "--jobs=#{ENV.make_jobs}"
-    end
+    system "cargo", "build", "--release"
+    bin.install "target/release/nfd2nfc"
+    bin.install "target/release/nfd2nfc-watcher"
   end
 
   # Register nfd2nfc-watcher as a user agent.
