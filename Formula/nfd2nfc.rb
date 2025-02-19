@@ -24,7 +24,7 @@ class Nfd2nfc < Formula
     end
 
     def post_install
-      system "launchctl", "load", "-w", plist_path
+      system "launchctl", "load", "-w", plist_path.to_s
     end
 
     test do
