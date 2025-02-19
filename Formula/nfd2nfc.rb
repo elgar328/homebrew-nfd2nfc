@@ -7,6 +7,7 @@ class Nfd2nfc < Formula
   head "https://github.com/elgar328/nfd2nfc.git", branch: "main"
 
   depends_on "rust" => :build
+  depends_on macos: :any
 
   def install
     system "cargo", "build", "--release"
@@ -14,26 +15,12 @@ class Nfd2nfc < Formula
     bin.install "target/release/nfd2nfc-watcher"
   end
 
-  # Register nfd2nfc-watcher as a user agent.
-  def plist
-    <<~EOS
-      <?xml version="1.0" encoding="UTF-8"?>
-      <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-      <plist version="1.0">
-        <dict>
-          <key>Label</key>
-          <string>com.github.elgar328.nfd2nfc</string>
-          <key>ProgramArguments</key>
-          <array>
-            <string>#{opt_bin}/nfd2nfc-watcher</string>
-          </array>
-          <key>RunAtLoad</key>
-          <true/>
-          <key>KeepAlive</key>
-          <true/>
-        </dict>
-      </plist>
-    EOS
+  service do
+    run [opt_bin/"nfd2nfc-watcher"]
+    keep_alive SuccessfulExit: false
+    run_type :immediate
+    working_dir HOMEBREW_PREFIX
+    name "com.github.elgar328.nfd2nfc"
   end
 
   # After installation, automatically load the watcher service.
@@ -42,7 +29,6 @@ class Nfd2nfc < Formula
   end
 
   # When uninstalling, unload the watcher service.
-
   test do
     assert_match "nfd2nfc", shell_output("#{bin}/nfd2nfc --version")
   end
