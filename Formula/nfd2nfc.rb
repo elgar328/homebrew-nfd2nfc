@@ -2,7 +2,7 @@ class Nfd2nfc < Formula
   desc "Convert filesystem entry names from NFD to NFC for cross-platform compatibility"
   homepage "https://github.com/elgar328/nfd2nfc"
   url "https://github.com/elgar328/nfd2nfc/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "ea46c2b30cef71a3366e4fea451d7f4ddf21f66b24ce7b37ef8a38bac2ecaa08"
+  sha256 "3c9d4068533c7c06c9778757cb0d7c1328c301c70f268cb150166350b8cae76f"
   license "MIT"
   head "https://github.com/elgar328/nfd2nfc.git", branch: "main"
 
@@ -29,15 +29,5 @@ class Nfd2nfc < Formula
 
   on_linux do
     odie "nfd2nfc is only supported on macOS."
-  end
-
-  def caveats
-    <<~EOS
-      To start the nfd2nfc-watcher service and enable it to restart at login, run:
-        brew services start nfd2nfc
-
-      Alternatively, if you don’t require a background service, you can run it manually:
-        nfd2nfc-watcher
-    EOS
   end
 end
