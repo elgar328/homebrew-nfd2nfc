@@ -20,7 +20,6 @@ class Nfd2nfc < Formula
       keep_alive crashed: true
       run_type :immediate
       working_dir HOMEBREW_PREFIX
-      name "com.github.elgar328.nfd2nfc"
     end
 
     def post_install
