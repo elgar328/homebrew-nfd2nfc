@@ -9,8 +9,10 @@ class Nfd2nfc < Formula
   depends_on "rust" => :build
 
   def install
-    # Build and install both executables via Cargo.
-    system "cargo", "install", *std_cargo_args
+    # Install the nfd2nfc binary from the "nfd2nfc" subdirectory.
+    system "cargo", "install", *std_cargo_args, "--path", "nfd2nfc"
+    # Install the nfd2nfc-watcher binary from the "nfd2nfc-watcher" subdirectory.
+    system "cargo", "install", *std_cargo_args, "--path", "nfd2nfc-watcher"
   end
 
   # Register nfd2nfc-watcher as a user agent.
