@@ -7,29 +7,32 @@ class Nfd2nfc < Formula
   head "https://github.com/elgar328/nfd2nfc.git", branch: "main"
 
   depends_on "rust" => :build
-  depends_on macos: :any
 
-  def install
-    system "cargo", "build", "--release"
-    bin.install "target/release/nfd2nfc"
-    bin.install "target/release/nfd2nfc-watcher"
+  on_macos do
+    def install
+      system "cargo", "build", "--release"
+      bin.install "target/release/nfd2nfc"
+      bin.install "target/release/nfd2nfc-watcher"
+    end
+
+    service do
+      run [opt_bin/"nfd2nfc-watcher"]
+      keep_alive SuccessfulExit: false
+      run_type :immediate
+      working_dir HOMEBREW_PREFIX
+      name "com.github.elgar328.nfd2nfc"
+    end
+
+    def post_install
+      system "launchctl", "load", "-w", plist_path
+    end
+
+    test do
+      assert_match "nfd2nfc", shell_output("#{bin}/nfd2nfc --version")
+    end
   end
 
-  service do
-    run [opt_bin/"nfd2nfc-watcher"]
-    keep_alive SuccessfulExit: false
-    run_type :immediate
-    working_dir HOMEBREW_PREFIX
-    name "com.github.elgar328.nfd2nfc"
-  end
-
-  # After installation, automatically load the watcher service.
-  def post_install
-    system "launchctl", "load", "-w", plist_path
-  end
-
-  # When uninstalling, unload the watcher service.
-  test do
-    assert_match "nfd2nfc", shell_output("#{bin}/nfd2nfc --version")
+  on_linux do
+    odie "nfd2nfc is only supported on macOS."
   end
 end
