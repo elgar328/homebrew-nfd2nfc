@@ -17,7 +17,7 @@ class Nfd2nfc < Formula
 
     service do
       run [opt_bin/"nfd2nfc-watcher"]
-      keep_alive :crashed
+      keep_alive crashed: true
       run_type :immediate
       working_dir HOMEBREW_PREFIX
       name "com.github.elgar328.nfd2nfc"
