@@ -22,9 +22,9 @@ class Nfd2nfc < Formula
       working_dir HOMEBREW_PREFIX
     end
 
-    def post_install
-      system "launchctl", "load", "-w", plist_path.to_s
-    end
+    # def post_install
+    #   system "launchctl", "load", "-w", plist_path.to_s
+    # end
 
     test do
       assert_match "nfd2nfc", shell_output("#{bin}/nfd2nfc --version")
