@@ -7,8 +7,8 @@ class Nfd2nfc < Formula
   head "https://github.com/elgar328/nfd2nfc.git", branch: "main"
 
   depends_on "rust" => :build
-  plist_options manual: "com.github.elgar328.nfd2nfc"
-  
+  # plist_options manual: "com.github.elgar328.nfd2nfc"
+
   on_macos do
     def install
       system "cargo", "build", "--release"
@@ -21,6 +21,7 @@ class Nfd2nfc < Formula
       keep_alive crashed: true
       run_type :immediate
       working_dir HOMEBREW_PREFIX
+      name "testtesttest"
     end
 
     def post_install
