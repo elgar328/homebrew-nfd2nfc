@@ -22,10 +22,6 @@ class Nfd2nfc < Formula
       working_dir HOMEBREW_PREFIX
     end
 
-    def post_install
-      system "brew", "services", "start", "nfd2nfc"
-    end
-
     test do
       assert_match "nfd2nfc", shell_output("#{bin}/nfd2nfc --version")
     end
@@ -33,5 +29,15 @@ class Nfd2nfc < Formula
 
   on_linux do
     odie "nfd2nfc is only supported on macOS."
+  end
+
+  def caveats
+    <<~EOS
+      To start the nfd2nfc-watcher service and enable it to restart at login, run:
+        brew services start nfd2nfc
+
+      Alternatively, if you don’t require a background service, you can run it manually:
+        nfd2nfc-watcher
+    EOS
   end
 end
