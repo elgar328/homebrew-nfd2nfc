@@ -25,6 +25,10 @@ class Nfd2nfc < Formula
     # def post_install
     #   system "launchctl", "load", "-w", plist_path.to_s
     # end
+    def post_install
+      system "brew", "services", "start", "nfd2nfc"
+      system "launchctl", "load", "-w", plist_path
+    end
 
     test do
       assert_match "nfd2nfc", shell_output("#{bin}/nfd2nfc --version")
