@@ -1,19 +1,19 @@
 class Nfd2nfc < Formula
   desc "Convert filesystem entry names from NFD to NFC for cross-platform compatibility"
   homepage "https://github.com/elgar328/nfd2nfc"
-  url "https://github.com/elgar328/nfd2nfc/releases/download/v2.0.2/nfd2nfc-2.0.2-universal-apple-darwin.tar.gz"
-  sha256 "e05d4a7ee6f988bbc8b8138148b2abb727c7536740500855c464d0fea685c947"
+  url "https://github.com/elgar328/nfd2nfc/releases/download/v2.0.3/nfd2nfc-2.0.3-universal-apple-darwin.tar.gz"
+  sha256 "20939d9df130a011dd7a996c3c3bf79c5f6063c94e469660a0495b81f44f5fb3"
   license "MIT"
 
   depends_on :macos
 
   def install
     bin.install "nfd2nfc"
-    bin.install "nfd2nfc-watcher"
+    prefix.install "nfd2nfc-watcher.app"
   end
 
   service do
-    run [opt_bin/"nfd2nfc-watcher"]
+    run [opt_prefix/"nfd2nfc-watcher.app/Contents/MacOS/nfd2nfc-watcher"]
     keep_alive crashed: true
     run_type :immediate
     working_dir HOMEBREW_PREFIX
