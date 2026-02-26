@@ -1,8 +1,8 @@
 class Nfd2nfc < Formula
   desc "Convert filesystem entry names from NFD to NFC for cross-platform compatibility"
   homepage "https://github.com/elgar328/nfd2nfc"
-  url "https://github.com/elgar328/nfd2nfc/releases/download/v2.0.3/nfd2nfc-2.0.3-universal-apple-darwin.tar.gz"
-  sha256 "20939d9df130a011dd7a996c3c3bf79c5f6063c94e469660a0495b81f44f5fb3"
+  url "https://github.com/elgar328/nfd2nfc/releases/download/v2.0.4/nfd2nfc-2.0.4-universal-apple-darwin.tar.gz"
+  sha256 "037dfbbb0837008417c3b9456714bb610017b2e49fd2fc08ff7e927d00096ecd"
   license "MIT"
 
   depends_on :macos
