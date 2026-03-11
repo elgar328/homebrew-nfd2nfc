@@ -5,6 +5,8 @@ class Nfd2nfc < Formula
   sha256 "10c06f13f53bbe3965339e961f7ad022f8d05d9b7d1e8bd69ba8e056fd1e1216"
   license "MIT"
 
+  deprecate! date: "2026-03-11", because: "is now available in homebrew-core. To migrate, run: brew uninstall nfd2nfc && brew untap elgar328/nfd2nfc && brew install nfd2nfc to switch to the official formula"
+
   depends_on :macos
 
   def install
